@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%
+            var chunks = htmlWebpackPlugin.files.chunks
+            function in_array(search,array){
+                for(var i in array){
+                    if(array[i]==search){
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+         %>
+        <meta charset="utf-8">
+        <title><%=htmlWebpackPlugin.options.title %></title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+        <meta name="renderer" content="webkit" />
+        <meta content="yes" name="apple-mobile-web-app-capable"><!--这meta的作用就是删除默认的苹果工具栏和菜单栏。-->
+        <meta content="yes" name="apple-touch-fullscreen">
+        <meta content="telephone=no,email=no" name="format-detection">
+
+        <% for (var css in chunks) { %>
+            <% if( chunks[css].css != ""){ %>
+            <link rel="stylesheet" href="<%=chunks[css].css%>" media="screen" title="no title">
+            <% } %>
+        <% } %>
+        <script type="text/javascript">
+            if(navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)){
+                window.IS_MOBILE = true;
+            }
+            if (navigator.userAgent.match(/MicroMessenger/i) == 'MicroMessenger') {
+                window.IS_WECHAT = true
+            }
+        </script>
+    </head>
+    <body>
+        <ui-view></ui-view>
+    </body>
+
+    <% for (var js of htmlWebpackPlugin.options.chunks) { %>
+        <% if( !in_array(js,htmlWebpackPlugin.options.noChunks) ){ %>
+                <script type="text/javascript" src="<%=chunks[js].entry%>"></script>
+        <%  }  %>
+    <% } %>
+
+</html>
