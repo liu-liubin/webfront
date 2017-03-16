@@ -9,14 +9,14 @@ var initContent = `
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "scripts": {
+  "scripts":{
     "dev": "webpack-dev-server --config dev-hot.js",
     "webpack": "webpack --config dev-hot.js",
-    "build": "webpack --config dev-build.js", 
+    "build": "webpack --config dev-build.js"
   }
 }
-
 `.trim();
+
 if( false!==fs.existsSync('./package.json') )return true;
 fs.writeFile( './package.json' , initContent , (err) => {
     if (err) throw err;

@@ -1,5 +1,8 @@
 #！ /bin/bash
 
+##  使用淘宝镜像
+yarn config set registry 'https://registry.npm.taobao.org'
+
 ##  初始化yarn项目
 node yarn.init.js 
 

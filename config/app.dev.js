@@ -6,9 +6,9 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 // webpack 入口配置
 var entry = {
   //框架、脚手架
-  "js/angular": ["babel-polyfill","angular","angular-ui-router","angular-resource"],
+  "angular": ["babel-polyfill","angular","angular-ui-router","angular-resource"],
   // 项目入口
-  "js/app":[
+  "app":[
       path.resolve(__dirname,'../app/index.js'),
       path.resolve(__dirname,'../app/app.js'),
   ],
